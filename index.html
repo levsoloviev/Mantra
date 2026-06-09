@@ -207,20 +207,7 @@
   const progressWrap = document.getElementById('progressWrap');
   const timeDisplay = document.getElementById('timeDisplay');
 
-  // Load via fetch → blob so the src never appears in the DOM
-  fetch(AUDIO_SRC)
-    .then(r => {
-      if (!r.ok) throw new Error('Audio load failed');
-      return r.blob();
-    })
-    .then(blob => {
-      const blobUrl = URL.createObjectURL(blob);
-      audio.src = blobUrl;
-    })
-    .catch(() => {
-      // Fallback: set src directly (slightly less protected but still hides from casual inspection)
-      audio.src = AUDIO_SRC;
-    });
+  audio.src = AUDIO_SRC;
 
   function fmt(s) {
     if (isNaN(s)) return '0:00';
